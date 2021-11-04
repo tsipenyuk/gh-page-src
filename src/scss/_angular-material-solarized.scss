@@ -1,0 +1,452 @@
+////////////////////////////////////////////////////////////////////////
+// Solarized ///////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+// Source: 
+// https://github.com/jeffbader/angular-material-solorized-theme/blob/master/angular-material-solorized.scss
+
+@use '~@angular/material' as mat;
+@import '~@angular/material/theming';
+@include mat.core();
+
+// This file is an attempt to create a custom angular-material theme, based
+// on the solarized color theme by Ethan Schoonover (https://ethanschoonover.com/solarized/)
+//
+// Basically what we are doing here is providing solarized alternatives to a
+// few key mat variables (foreground and background themes), functions
+// (mat-light-theme() and mat-dark-theme(), angular-material-theme() ), and
+// some new paletts based off the solarized color panel.
+
+// The default angular-material themes use colors from the mat-gray color palette for the
+// primary forground and background colors. This file uses colors from solarized
+// monotone panel for the basic foreground and background colors.
+//
+// The angular-material theme also supports 3 accent colors, primary, accent and warn.
+// This file attempts to map the 8 solarized accent colors to mat compatible pallets
+// based on those colors.
+
+// define the solarized colors
+// monotone-dark
+$base03: #002b36;
+$base02: #073642;
+$base01: #586e75;
+$base00: #657b83;
+// monotone-light
+$base0: #839496;
+$base1: #93a1a1;
+$base2: #eee8d5;
+$base3: #fdf6e3;
+// accent colors
+$yellow: #b58900;
+$orange: #cb4b16;
+$red: #dc322f;
+$magenta: #d33682;
+$violet: #6c71c4;
+$blue: #268bd2;
+$cyan: #2aa198;
+$green: #859900;
+
+// angular material uses colors from the mat-grey palette for the forground and
+// background themes. The light themes use 50-300 and the dark themes use 700-900.
+// Create our own grey palette using the solarized colors from the monotone panel.
+$solarized-grey: (
+  50:  $base3,
+  100: $base2,
+  200: $base1,
+  300: $base0,
+  700: $base01,
+  800: $base02,
+  900: $base03
+);
+
+// redefine the primary text colors based on the solarized monotone colors.
+$solarized_white: $base3;     // the closest solarized color to white.
+$solarized_black: $base03;    // the closest solarized color to black
+$dark-primary-text: $base00;
+$dark-secondary-text: $base01;
+$light-primary-text: $base0;
+$light-secondary-text: $base1;
+
+$dark-background: $base03;
+$light-background: $base3;
+
+// define the pallets for the solarized accent colors, in each
+// case we use hue 500 for the base solarized color, other hues
+// are lighter and darker versions of the base.
+//
+
+
+$solarized-yellow: (
+  100: lighten($yellow, 40%),
+  200: lighten($yellow, 30%),
+  300: lighten($yellow, 20%),
+  400: lighten($yellow, 10%),
+  500: $yellow,
+  600: darken($yellow, 10%),
+  700: darken($yellow, 15%),
+  800: darken($yellow, 18%),
+  900: darken($yellow, 20%),
+  contrast: (
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  )
+);
+
+$solarized-orange: (
+  100: lighten($orange, 40%),
+  200: lighten($orange, 30%),
+  300: lighten($orange, 20%),
+  400: lighten($orange, 10%),
+  500: $orange,
+  600: darken($orange, 10%),
+  700: darken($orange, 15%),
+  800: darken($orange, 18%),
+  900: darken($orange, 20%),
+  contrast: (
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  )
+);
+
+$solarized-red: (
+  100: lighten($red, 40%),
+  200: lighten($red, 30%),
+  300: lighten($red, 20%),
+  400: lighten($red, 10%),
+  500: $red,
+  600: darken($red, 10%),
+  700: darken($red, 15%),
+  800: darken($red, 18%),
+  900: darken($red, 20%),
+  contrast: (
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  )
+);
+
+$solarized-magenta: (
+  100: lighten($magenta, 40%),
+  200: lighten($magenta, 30%),
+  300: lighten($magenta, 20%),
+  400: lighten($magenta, 10%),
+  500: $magenta,
+  600: darken($magenta, 10%),
+  700: darken($magenta, 15%),
+  800: darken($magenta, 18%),
+  900: darken($magenta, 20%),
+  contrast: (
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $dark-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  )
+);
+
+$solarized-violet: (
+  100: lighten($violet, 40%),
+  200: lighten($violet, 30%),
+  300: lighten($violet, 20%),
+  400: lighten($violet, 10%),
+  500: $violet,
+  600: darken($violet, 10%),
+  700: darken($violet, 15%),
+  800: darken($violet, 18%),
+  900: darken($violet, 20%),
+  contrast: (
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  )
+);
+
+$solarized-blue: (
+  100: lighten($blue, 40%),
+  200: lighten($blue, 30%),
+  300: lighten($blue, 20%),
+  400: lighten($blue, 10%),
+  500: $blue,
+  600: darken($blue, 10%),
+  700: darken($blue, 15%),
+  800: darken($blue, 18%),
+  900: darken($blue, 20%),
+  contrast: (
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  )
+);
+
+$solarized-cyan: (
+  100: lighten($cyan, 40%),
+  200: lighten($cyan, 30%),
+  300: lighten($cyan, 20%),
+  400: lighten($cyan, 10%),
+  500: $cyan,
+  600: darken($cyan, 10%),
+  700: darken($cyan, 15%),
+  800: darken($cyan, 18%),
+  900: darken($cyan, 20%),
+  contrast: (
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $solarized-white,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  )
+);
+
+$solarized-green: (
+  100: lighten($green, 40%),
+  200: lighten($green, 30%),
+  300: lighten($green, 20%),
+  400: lighten($green, 10%),
+  500: $green,
+  600: darken($green, 10%),
+  700: darken($green, 15%),
+  800: darken($green, 18%),
+  900: darken($green, 20%),
+  contrast: (
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  )
+);
+
+// These monotone palettes are used for the default solarized themes.
+$solarized-monotone-light: (
+  100: $base3,
+  500: $base2,
+  700: $base1,
+  contrast: (
+    100: $dark-primary-text,
+    500: $dark-primary-text,
+    700: $dark-primary-text
+  )
+);
+
+$solarized-monotone-dark: (
+  100: $base01,
+  500: $base02,
+  700: $base03,
+  contrast: (
+    100: $light-primary-text,
+    500: $light-primary-text,
+    700: $light-primary-text
+  )
+);
+
+
+// Define the solarized foreground and background palette for light themes.
+
+$solarized-light-theme-background: (
+  status-bar: map_get($solarized-grey, 300),
+  app-bar:    map_get($solarized-grey, 100),
+  background: $light-background,
+  hover:      rgba($solarized-black, 0.04),
+  card:       map_get($solarized-grey, 100),
+  dialog:     map_get($solarized-grey, 100),
+  disabled-button: rgba($solarized-black, 0.12),
+  raised-button: $solarized-white,
+  focused-button: $dark-focused,
+  selected-button: map_get($solarized-grey, 300),
+  selected-disabled-button: map_get($solarized-grey, 400),
+  disabled-button-toggle: map_get($solarized-grey, 200),
+  unselected-chip: map_get($solarized-grey, 300),
+  disabled-list-option: map_get($solarized-grey, 200),
+);
+
+$solarized-light-theme-foreground: (
+  base:              $dark-primary-text,
+  divider:           $dark-dividers,
+  dividers:          $dark-dividers,
+  disabled:          $dark-disabled-text,
+  disabled-button:   rgba($solarized-black, 0.26),
+  disabled-text:     $dark-disabled-text,
+  elevation:         $solarized-black,
+  highlight:         $base1,
+  hint-text:         $dark-secondary-text,
+  secondary-text:    $dark-secondary-text,
+  icon:              rgba($solarized-black, 0.54),
+  icons:             rgba($solarized-black, 0.54),
+  text:              rgba($solarized-black, 0.87),
+  slider-min:        rgba($solarized-black, 0.87),
+  slider-off:        rgba($solarized-black, 0.26),
+  slider-off-active: rgba($solarized-black, 0.38),
+);
+
+// Background and foreground for dark themes.
+
+$solarized-dark-theme-background: (
+  status-bar: map_get($solarized-grey, 900),
+  app-bar:    map_get($solarized-grey, 900),
+  background: $dark-background,
+  hover:      rgba($solarized-white, 0.04),
+  card:       map_get($solarized-grey, 800),
+  dialog:     map_get($solarized-grey, 800),
+  disabled-button: rgba($solarized-white, 0.12),
+  raised-button: map-get($solarized-grey, 800),
+  focused-button: $light-focused,
+  selected-button: map_get($solarized-grey, 900),
+  selected-disabled-button: map_get($solarized-grey, 800),
+  disabled-button-toggle: $solarized-black,
+  unselected-chip: map_get($solarized-grey, 700),
+  disabled-list-option: $solarized-black,
+);
+
+$solarized-dark-theme-foreground: (
+  base:              $light-primary-text,
+  divider:           $light-dividers,
+  dividers:          $light-dividers,
+  disabled:          $light-disabled-text,
+  disabled-button:   rgba($solarized-white, 0.3),
+  disabled-text:     $light-disabled-text,
+  elevation:         $solarized-white,
+  highlight:         $base1,
+  hint-text:         $light-disabled-text,
+  secondary-text:    $light-secondary-text,
+  icon:              $solarized-white,
+  icons:             $solarized-white,
+  text:              $solarized-white,
+  slider-min:        $solarized-white,
+  slider-off:        rgba($solarized-white, 0.3),
+  slider-off-active: rgba($solarized-white, 0.3),
+);
+
+
+// Creates a container object for a light theme to be given to individual component theme mixins.
+@function solarized-light-theme($primary, $accent, $warn: mat.define-palette($solarized-red)) {
+  @return (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+    is-dark: false,
+    foreground: $solarized-light-theme-foreground,
+    background: $solarized-light-theme-background,
+  );
+}
+
+// Creates a container object for a dark theme to be given to individual component theme mixins.
+@function solarized-dark-theme($primary, $accent, $warn: mat.define-palette($solarized-red)) {
+  @return (
+    primary: $primary,
+    accent: $accent,
+    warn: $warn,
+    is-dark: true,
+    foreground: $solarized-dark-theme-foreground,
+    background: $solarized-dark-theme-background,
+  );
+}
+
+@mixin solarized-material-theme($theme) {
+  // apply the theme to the angular material components
+  @include angular-material-theme($theme);
+
+  // apply the theme to the base html elements
+  $foreground: map_get($theme, foreground);
+  $foregroundColor: map_get($foreground, base);
+  $highlightColor: map_get($foreground, highlight);
+
+  * { color: $foregroundColor }
+  h1,h2,h3,h4,h5,h6 { color:$highlightColor; border-color: $foregroundColor; }
+  a, a:active, a:visited { color: $highlightColor; }
+}
+
+
+// define the default primary, accent, and warn material pallets
+$default-light-primary: mat.define-palette($solarized-monotone-dark);
+$default-light-accent:  mat.define-palette($solarized-monotone-dark);
+$default-light-warn:    mat.define-palette($solarized-monotone-dark);
+
+$default-dark-primary: mat.define-palette($solarized-monotone-light);
+$default-dark-accent:  mat.define-palette($solarized-monotone-light);
+$default-dark-warn:    mat.define-palette($solarized-monotone-light);
+
+
+// define the light and dark themes with the solarized background and
+// forground themes, and the app specific primary and secondary pallets
+$default-solarized-light-theme: solarized-light-theme($default-light-primary, $default-light-accent, $default-light-warn);
+$default-solarized-dark-theme: solarized-dark-theme($default-dark-primary, $default-dark-accent, $default-dark-warn);
+////////////////////////////////////////////////////////////////////////
+// END Solarized ///////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+
+// todo: 
+//  - figure out how to declare colors in styles.scss
+//  - remove code duplication in light / dark themes
+.solarized-light {
+  $theme:  $default-solarized-light-theme;
+  @include solarized-material-theme($theme);
+  $primary: map-get($theme, primary);
+  $background: map-get($theme, background);
+
+  .toolbar {
+    background-color: map-get($background, app-bar);
+  }
+
+  .toolbar #github-logo {
+    fill: map-get($primary, 500);
+  }
+
+}
+.solarized-dark {
+  $theme:  $default-solarized-dark-theme;
+  @include solarized-material-theme($theme);
+  $primary: map-get($theme, primary);
+  $background: map-get($theme, background);
+   
+  .toolbar {
+    background-color: map-get($background, app-bar);
+  }
+
+  .toolbar #github-logo {
+    fill: map-get($primary, 500);
+  }
+
+}
